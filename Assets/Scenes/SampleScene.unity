@@ -1881,7 +1881,8 @@ MonoBehaviour:
         m_CallState: 2
   _boardWidth: 10
   _boardHeight: 10
-  _spawnTime: 2
+  _minSpawnTime: 2
+  _maxSpawnTime: 10
   _maxAmountOfInstances: 30
   _instancePrefab: {fileID: 2450977510423810036, guid: 5c1a6d0a5c38ad24d9553fd542f2eab3, type: 3}
   _boardPrefab: {fileID: 3814343369876859084, guid: 669f87aa167017c4687466ec9c814619, type: 3}

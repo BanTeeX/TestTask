@@ -11,8 +11,9 @@ public class SimulationManager : MonoBehaviour
 	[SerializeField]
 	private int _boardHeight;
 	[SerializeField]
-	[Range(2.0f, 10.0f)]
-	private float _spawnTime;
+	private float _minSpawnTime;
+	[SerializeField]
+	private float _maxSpawnTime;
 	[SerializeField]
 	private int _maxAmountOfInstances;
 	[SerializeField]
@@ -56,7 +57,7 @@ public class SimulationManager : MonoBehaviour
 		while (true)
 		{
 			SpawnInstance();
-			yield return new WaitForSeconds(_spawnTime);
+			yield return new WaitForSeconds(Random.Range(_minSpawnTime, _maxSpawnTime));
 		}
 	}
 
