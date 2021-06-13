@@ -9,6 +9,8 @@ public class Actor : MonoBehaviour
 	public UnityEvent onDestroy;
 	[HideInInspector]
 	public UnityEvent<Actor> onClick;
+	[HideInInspector]
+	public UnityEvent onValueChange;
 	public int life;
 	public string actorName;
 
@@ -33,6 +35,7 @@ public class Actor : MonoBehaviour
 		if (collision.collider.CompareTag("Actor"))
 		{
 			life--;
+			onValueChange.Invoke();
 		}
 		if (life <= 0)
 		{

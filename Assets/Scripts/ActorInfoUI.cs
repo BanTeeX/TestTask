@@ -9,27 +9,58 @@ public class ActorInfoUI : MonoBehaviour
 	private TMP_Text _actorLifeText;
 	private Actor _currentActor = null;
 
-	public void AddSelfToClickEvent(Actor actor) => actor.onClick.AddListener(PrintActorInformation);
+	public void AddSelfToClickEvent(Actor actor) => actor.onClick.AddListener(ActorSelection);
 
-	private void PrintActorInformation(Actor actor)
+	private void ActorSelection(Actor actor)
 	{
 		if (_currentActor == actor)
 		{
-			_currentActor.Unselect();
-			_currentActor = null;
-			_actorNameText.text = "n/d";
-			_actorLifeText.text = "n/d";
+			UnselectActor();
 		}
 		else
 		{
 			if (_currentActor != null)
 			{
-				_currentActor.Unselect();
+				UnselectActor();
 			}
-			_currentActor = actor;
-			_currentActor.Select();
+			SelectActor(actor);
+		}
+		PrintActorInformation();
+	}
+
+	private void SelectActor(Actor actor)
+	{
+		_currentActor = actor;
+		_currentActor.Select();
+		_currentActor.onValueChange.AddListener(PrintActorInformation);
+		_currentActor.onDestroy.AddListener(OnDestroyCurrentActor);
+	}
+
+	private void UnselectActor()
+	{
+		_currentActor.Unselect();
+		_currentActor.onValueChange.RemoveListener(PrintActorInformation);
+		_currentActor.onDestroy.RemoveListener(OnDestroyCurrentActor);
+		_currentActor = null;
+	}
+
+	private void PrintActorInformation()
+	{
+		if (_currentActor == null)
+		{
+			_actorNameText.text = "n/d";
+			_actorLifeText.text = "n/d";
+		}
+		else
+		{
 			_actorNameText.text = _currentActor.actorName;
 			_actorLifeText.text = _currentActor.life.ToString();
 		}
+	}
+
+	private void OnDestroyCurrentActor()
+	{
+		UnselectActor();
+		PrintActorInformation();
 	}
 }
