@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Actor : MonoBehaviour
 {
+	public UnityEvent onDestroy;
+
 	[SerializeField]
 	private float _speed;
 	[SerializeField]
@@ -25,8 +28,9 @@ public class Actor : MonoBehaviour
 		{
 			_life--;
 		}
-		if (_life == 0)
+		if (_life <= 0)
 		{
+			onDestroy.Invoke();
 			Destroy(gameObject);
 		}
 	}
