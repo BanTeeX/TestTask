@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2450977510423810025}
   - component: {fileID: 2450977510423810024}
   - component: {fileID: 2450977510423810037}
+  - component: {fileID: -1466265908943336482}
   m_Layer: 0
   m_Name: Actor
   m_TagString: Actor
@@ -135,12 +136,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdef1801142ec314b88280529976889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDestroy:
-    m_PersistentCalls:
-      m_Calls: []
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
   life: 3
   actorName: 
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
   _speed: 2
+--- !u!114 &-1466265908943336482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450977510423810036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e99fab432573ff4ca01e1cbe69fde67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseColor: {r: 1, g: 1, b: 1, a: 1}
+  _selectionColor: {r: 0, g: 0, b: 0, a: 1}
+  onSelection:
+    m_PersistentCalls:
+      m_Calls: []
